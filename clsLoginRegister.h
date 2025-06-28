@@ -26,8 +26,10 @@ public:
 
 	static void ShowLoginRegisterScreen()
 	{
-		clsScreen::_DrawScreenHeader("\t\tRegister Login Screen");
-
+        if (!clsScreen::CheckAccessRights(clsUser::enPermissions::eLoginRegister))
+        {
+            return;
+        }
 		vector<clsUser::stLoginRegisterRecord> vUsers = clsUser::LoadLoginRegisterUsers();
 
         string Title = "\t  Login Register List Screen";

@@ -6,6 +6,7 @@
 #include "clsPerson.h"
 #include "clsString.h"
 #include "clsDate.h"
+#include "clsUtil.h"
 
 #include <vector>
 #include <fstream>
@@ -30,7 +31,7 @@ private:
         if(vUserData.size() == 7)
         { 
             return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2],
-                vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+                vUserData[3], vUserData[4], clsUtil::DecryptionText(vUserData[5], 2), stoi(vUserData[6]));
         }
     }
 
@@ -43,7 +44,7 @@ private:
         UserRecord += User.Email + Seperator;
         UserRecord += User.Phone + Seperator;
         UserRecord += User.UserName + Seperator;
-        UserRecord += User.Password + Seperator;
+        UserRecord += clsUtil::EncryptText(User.GetPassword(), 2) + Seperator;
         UserRecord += to_string(User.Permissions);
 
         return UserRecord;
@@ -159,7 +160,7 @@ private:
         string LoginRecord = "";
         LoginRecord += clsDate::GetSystemDateTimeString();
         LoginRecord += Seperator + this->UserName + Seperator;
-        LoginRecord += this->Password + Seperator;
+        LoginRecord += clsUtil::EncryptText(this->Password, 2) + Seperator;
         LoginRecord += to_string(this->Permissions);
 
         return LoginRecord;
@@ -174,7 +175,7 @@ private:
 
         LoginRegisterRecord.DateTime = vString[0];
         LoginRegisterRecord.UserName = vString[1];
-        LoginRegisterRecord.Password = vString[2];
+        LoginRegisterRecord.Password = clsUtil::DecryptionText(vString[2], 2);
         LoginRegisterRecord.Permissions = stoi(vString[3]);
 
         return LoginRegisterRecord;
@@ -185,7 +186,7 @@ public:
     {
         eAll = -1, pListClients = 1, pAddNewClient = 2, pDeleteClient = 4,
         pUpdateClients = 8, pFindClient = 16, pTransactions = 32,
-        pManageUsers = 64
+        pManageUsers = 64, eLoginRegister = 128
     };
 
     struct stLoginRegisterRecord
@@ -443,4 +444,5 @@ public:
         }
         return vLoginUsers;
     }
+
 };

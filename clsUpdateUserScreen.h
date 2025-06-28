@@ -30,7 +30,8 @@ private:
 			"\nUpdate Client   : ",
 			"\nFind Client     : ",
 			"\nTransactions    : ",
-			"\nManage Users    : "
+			"\nManage Users    : ",
+			"\nLogin Register  : "
 			};
 
 			cout << "\nDo you want to gave access to:\n";

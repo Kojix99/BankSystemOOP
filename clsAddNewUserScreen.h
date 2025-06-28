@@ -31,7 +31,8 @@ class clsAddNewUserScreen : protected clsScreen
 			"\nUpdate Client   : ",
 			"\nFind Client     : ",
 			"\nTransactions    : ",
-			"\nManage Users    : "
+			"\nManage Users    : ",
+			"\nLogin Register  : "
 			};
 
 			cout << "\nDo you want to gave access to:\n";
@@ -93,7 +94,7 @@ public:
 	{
 		clsScreen::_DrawScreenHeader("\tAdd New User Screen");
 		string Username;;
-		cout << "\nEnter User Name: ";
+		cout << "\nEnter User Name       : ";
 		Username = clsInputValidate::ReadString();
 
 		while (clsUser::IsUserExist(Username))
