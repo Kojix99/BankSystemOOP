@@ -41,13 +41,13 @@ public:
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "_________________________________________\n" << endl;
 
-        cout << setw(8) << left << "" << "| " << left << setw(15) << "Accout Number";
-        cout << "| " << left << setw(20) << "Client Name";
-        cout << "| " << left << setw(12) << "Phone";
-        cout << "| " << left << setw(20) << "Email";
-        cout << "| " << left << setw(10) << "Pin Code";
-        cout << "| " << left << setw(12) << "Balance";
-        cout << setw(8) << left << "" << "\n\t_______________________________________________________";
+        cout << setw(8) << left << "" << "| " << setw(15) << "Accout Number";
+        cout << "| " << setw(20) << "Client Name";
+        cout << "| " << setw(12) << "Phone";
+        cout << "| " << setw(20) << "Email";
+        cout << "| " << setw(10) << "Pin Code";
+        cout << "| " << setw(12) << "Balance";
+        cout << setw(8) << "" << "\n\t_______________________________________________________";
         cout << "_________________________________________\n" << endl;
 
         if (vClients.size() == 0)

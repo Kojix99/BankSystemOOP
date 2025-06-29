@@ -63,10 +63,22 @@ private:
 		return vCurrencies;
 	}
 
-	static void _SaveCurrenciesToFile(vector<clsCurrency>& vCurrencies)
+	static void _SaveCurrenciesToFile(const vector<clsCurrency>& vCurrencies)
 	{
+		fstream MyFile;
+		MyFile.open("Currencies.txt", ios::out);
 
+		if (MyFile.is_open())
+		{
+			for (const clsCurrency& tempCurrency : vCurrencies)
+			{
+				MyFile << _ConvertObjectToCurrencyLine(tempCurrency) << endl;
+			}
+
+			MyFile.close();
+		}
 	}
+
 	void _Update()
 	{
 		vector<clsCurrency> vCurrencies = _LoadCurrenciesDataFromFile();
@@ -176,7 +188,7 @@ public:
 		return this->_Rate;
 	}
 
-	static bool IsCurrencyExistByCountry(string Country)
+	static bool IsCurrencyExist(string Country)
 	{
 		clsCurrency tempCurrency = FindByCountry(Country);
 
@@ -193,5 +205,16 @@ public:
 	static vector<clsCurrency> GetCurrenciesList()
 	{
 		return _LoadCurrenciesDataFromFile();
+	}
+
+
+	float ConvertToUsd(float Amount)
+	{
+		return (Amount / this->GetRate());
+	}
+
+	float ConvertToOtherCurrency(float Amount, clsCurrency Currency2)
+	{
+		return this->ConvertToUsd(Amount) * Currency2.GetRate();
 	}
 };
