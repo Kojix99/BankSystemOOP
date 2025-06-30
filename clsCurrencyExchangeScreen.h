@@ -4,6 +4,7 @@
 #include <iomanip>
 
 #include "clsScreen.h"
+#include "clsInputValidate.h"
 
 #include "clsCurrencyListScreen.h"
 #include "clsFindCurrency.h"
@@ -27,17 +28,8 @@ private:
     static enCurrencyOptions _ReadCurrencyOption()
     {
         short CURRENCY_OPTIONS_NUMBER = 5;
-        
-        short CurrencyOption;
-        cout << left;
-        cout << setw(37) << "" << "Choose what do you want to do [1 to " << CURRENCY_OPTIONS_NUMBER << "]: ";
-        while (!(cin >> CurrencyOption) || CurrencyOption > CURRENCY_OPTIONS_NUMBER || CurrencyOption < 1)
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << setw(37) << "" << "Invalid Input .. Choose what do you want to do [1 to " << CURRENCY_OPTIONS_NUMBER << "]: ";
-        }
-
+        string Message = "Choose what do you want to do [1 to " + to_string(CURRENCY_OPTIONS_NUMBER) + "]: ";
+        short CurrencyOption = clsInputValidate<short>::ReadDataBetween(Message, 1, CURRENCY_OPTIONS_NUMBER, 37);
         return enCurrencyOptions(CurrencyOption);
     }
 

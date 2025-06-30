@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
+
 #include "clsScreen.h"
 #include "clsUser.h"
-#include <iomanip>
 
 class clsListUsersScreen :protected clsScreen
 {

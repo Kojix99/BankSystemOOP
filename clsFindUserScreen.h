@@ -34,11 +34,11 @@ public:
 
 		string UserName;
 		cout << "\nEnter User Name: ";
-		UserName = clsInputValidate::ReadString();
+		UserName = clsInputValidate<string>::ReadString();
 		while (!clsUser::IsUserExist(UserName))
 		{
 			cout << "\nUser with [" << UserName << "] User Name does not exist, Enter Another UserName: ";
-			UserName = clsInputValidate::ReadString();
+			UserName = clsInputValidate<string>::ReadString();
 		}
 
 		clsUser UserToFind = clsUser::Find(UserName);

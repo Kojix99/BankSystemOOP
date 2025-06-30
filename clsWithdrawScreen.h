@@ -34,24 +34,23 @@ public:
 
 		string AccountNumber;
 		cout << "\nEnter Accont Number: ";
-		AccountNumber = clsInputValidate::ReadString();
+		AccountNumber = clsInputValidate<string>::ReadString();
 
 		while (!clsBankClient::IsClientExist(AccountNumber))
 		{
 			cout << "\nClient with [" << AccountNumber << "] Account Number does not exist, Enter another Account Number: ";
-			AccountNumber = clsInputValidate::ReadString();
+			AccountNumber = clsInputValidate<string>::ReadString();
 		}
 
 		clsBankClient Client = clsBankClient::Find(AccountNumber);
 
 		_Print(Client);
 
-		cout << "\nEnter WithDraw Amount: ";
-		float WithDrawAmount = clsInputValidate::ReadFloatNumberBetween(0, FLT_MAX, "Enter a positive with Amount: ");
+		float WithDrawAmount = clsInputValidate<float>::ReadDataBetween("Enter WithDraw Amount: ",0, FLT_MAX, 0);
 
 		if (WithDrawAmount <= Client.AccountBalance)
 		{
-			cout << "\nAre you sure you want to With WithDraw [" << WithDrawAmount << "] this amount: ";
+			cout << "\nAre you sure you want to With WithDraw [" << WithDrawAmount << "] this amount (Y/N): ";
 			char Answer;
 			cin >> Answer;
 			if (tolower(Answer))
@@ -67,8 +66,8 @@ public:
 		else
 		{
 			cout << "\nCannot withdraw, Insuffecient Balance!\n";
-			cout << "\nAmount to withdraw is: " << WithDrawAmount;
-			cout << "\nYour Balance is: " << Client.AccountBalance;
+			cout << "\n\nAmount to withdraw is: " << WithDrawAmount;
+			cout << "\n\nYour Balance is: " << Client.AccountBalance;
 		}
 	}
 };

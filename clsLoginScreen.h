@@ -29,10 +29,10 @@ private:
 				return false;
 			}
 			cout << "Enter UserName: ";
-			UserName = clsInputValidate::ReadString();
+			UserName = clsInputValidate<string>::ReadString();
 			
 			cout << "Enter Password: ";
-			Password = clsInputValidate::ReadString();
+			Password = clsInputValidate<string>::ReadString();
 
 			CurrentUser = clsUser::Find(UserName, Password);
 
@@ -47,7 +47,7 @@ public:
 	static bool ShowLoginScreen()
 	{
 		system("cls");
-		clsScreen::_DrawScreenHeader("\t\tLogin Screen");
+		clsScreen::_DrawScreenHeader("\t    Login Screen");
 		return _Login();
 	}
 };

@@ -207,7 +207,6 @@ public:
 		return _LoadCurrenciesDataFromFile();
 	}
 
-
 	float ConvertToUsd(float Amount)
 	{
 		return (Amount / this->GetRate());

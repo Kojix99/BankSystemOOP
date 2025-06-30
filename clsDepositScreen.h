@@ -30,24 +30,23 @@ public:
 		clsScreen::_DrawScreenHeader("\t    Deposite Screen");
 		string AccountNumber;
 		cout << "\nEnter Account Number: ";
-		AccountNumber = clsInputValidate::ReadString();
+		AccountNumber = clsInputValidate<string>::ReadString();
 
 		while (!clsBankClient::IsClientExist(AccountNumber))
 		{
 			cout << "\nClient with [" << AccountNumber << "] Account Number does not exist,  Enter another account Number: ";
-			AccountNumber = clsInputValidate::ReadString();
+			AccountNumber = clsInputValidate<string>::ReadString();
 		}
 
 		clsBankClient Client = clsBankClient::Find(AccountNumber);
 
 		_Print(Client);
 
-		cout << "\nEnter Deposite Amount: ";
-		float DepositAmount = clsInputValidate::ReadFloatNumberBetween(1, FLT_MAX, "\nEnter a Positive Deposite Amount: ");
+		float DepositAmount = clsInputValidate<float>::ReadDataBetween("Enter Deposite Amount: ", 0, FLT_MAX, 0);
 		
 		char Answer;
 
-		cout << "\nAre you sure you want to Deposit [" << DepositAmount << "] this amount: ";
+		cout << "\nAre you sure you want to Deposit [" << DepositAmount << "] this amount (Y/N): ";
 		cin >> Answer;
 
 		if (tolower(Answer) == 'y')

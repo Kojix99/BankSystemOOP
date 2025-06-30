@@ -332,23 +332,14 @@ public:
         {
         case enMode::EmptyMode:
         {
-            if (IsEmpty())
-            {
-
-                return enSaveResults::svFaildEmptyObject;
-
-            }
+            return enSaveResults::svFaildEmptyObject;
 
         }
 
         case enMode::UpdateMode:
         {
-
-
             _Update();
-
             return enSaveResults::svSucceeded;
-
             break;
         }
 
@@ -389,7 +380,7 @@ public:
 
         for (clsBankClient& C : _vClients)
         {
-            if (C.AccountNumber() == _AccountNumber)
+            if (C.AccountNumber() == this->_AccountNumber)
             {
                 C._MarkedForDelete = true;
                 break;

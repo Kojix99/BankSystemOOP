@@ -5,6 +5,9 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsUser.h"
+
+using namespace std;
+
 class clsUpdateUserScreen : protected clsScreen
 {
 private:
@@ -56,19 +59,19 @@ private:
 	static void _ReadUserInfo(clsUser& User)
 	{
 		cout << "\nEnter FirstName       : ";
-		User.FirstName = clsInputValidate::ReadString();
+		User.FirstName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter LastName        : ";
-		User.LastName = clsInputValidate::ReadString();
+		User.LastName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Email           : ";
-		User.Email = clsInputValidate::ReadString();
+		User.Email = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Phone           : ";
-		User.Phone = clsInputValidate::ReadString();
+		User.Phone = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Password        : ";
-		User.Password = clsInputValidate::ReadString();
+		User.Password = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Permissions     : ";
 		User.Permissions = _ReadUserPermisions();
@@ -96,12 +99,12 @@ public:
 
 		string UserName;
 		cout << "Enter UserName to Update: ";
-		UserName = clsInputValidate::ReadString();
+		UserName = clsInputValidate<string>::ReadString();
 
 		while (!clsUser::IsUserExist(UserName))
 		{
 			cout << "User with [" << UserName << "] Does not exist, Enter another UserName: ";
-			UserName = clsInputValidate::ReadString();
+			UserName = clsInputValidate<string>::ReadString();
 		}
 
 		clsUser UserToUpdate = clsUser::Find(UserName);

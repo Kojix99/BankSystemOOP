@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 #include "clsScreen.h"
 #include "clsPerson.h"
 #include "clsBankClient.h"
@@ -24,11 +25,11 @@ private:
     {
         string AccountNumber;
         cout << "\nPlease Enter Account Number to Transfer From: ";
-        AccountNumber = clsInputValidate::ReadString();
+        AccountNumber = clsInputValidate<string>::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber))
         {
             cout << "\nAccount number is not found, choose another one: ";
-            AccountNumber = clsInputValidate::ReadString();
+            AccountNumber = clsInputValidate<string>::ReadString();
         }
         return AccountNumber;
     }
@@ -37,14 +38,11 @@ private:
     {
         float Amount;
 
-        cout << "\nEnter Transfer Amount? ";
-
-        Amount = clsInputValidate::ReadFloatNumber();
+        Amount = clsInputValidate<float>::ReadData("Enter Transfer Amount? ");
 
         while (Amount > SourceClient.AccountBalance)
         {
-            cout << "\nAmount Exceeds the available Balance, Enter another Amount ? ";
-            Amount = clsInputValidate::ReadDblNumber();
+            Amount = clsInputValidate<float>::ReadData("Amount Exceeds the available Balance, Enter another Amount ? ");
         }
         return Amount;
     }

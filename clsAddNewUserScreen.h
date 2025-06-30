@@ -56,19 +56,19 @@ class clsAddNewUserScreen : protected clsScreen
 	static void _ReadUserInfo(clsUser& User)
 	{
 		cout << "\nEnter FirstName       : ";
-		User.FirstName = clsInputValidate::ReadString();
+		User.FirstName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter LastName        : ";
-		User.LastName = clsInputValidate::ReadString();
+		User.LastName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Email           : ";
-		User.Email = clsInputValidate::ReadString();
+		User.Email = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Phone           : ";
-		User.Phone = clsInputValidate::ReadString();
+		User.Phone = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Password        : ";
-		User.Password = clsInputValidate::ReadString();
+		User.Password = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Permissions     : ";
 		User.Permissions = _ReadUserPermisions();
@@ -95,12 +95,12 @@ public:
 		clsScreen::_DrawScreenHeader("\tAdd New User Screen");
 		string Username;;
 		cout << "\nEnter User Name       : ";
-		Username = clsInputValidate::ReadString();
+		Username = clsInputValidate<string>::ReadString();
 
 		while (clsUser::IsUserExist(Username))
 		{
 			cout << "User with Username [" << Username << "] Is already exist, Enter another UserName: ";
-			Username = clsInputValidate::ReadString();
+			Username = clsInputValidate<string>::ReadString();
 		}
 
 		clsUser User = clsUser::GetAddNewUserObject(Username);
@@ -113,12 +113,12 @@ public:
 
 		switch (SaveResults)
 		{
-		case clsUser::enSaveResults::svSucceeded:
-		{
-			cout << "Client saved Successfully.\n";
-			_Print(User);
-			break;
-		}
+			case clsUser::enSaveResults::svSucceeded:
+			{
+				cout << "Client saved Successfully.\n";
+				_Print(User);
+				break;
+			}
 		}
 	}
 };

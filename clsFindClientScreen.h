@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsBankClient.h"
@@ -34,12 +35,12 @@ public:
 		clsScreen::_DrawScreenHeader("\tFind Client Screen");
 		string AccountNumber;
 		cout << "\nEnter Account Number To Find: ";
-		AccountNumber = clsInputValidate::ReadString();
+		AccountNumber = clsInputValidate<string>::ReadString();
 
 		while (!clsBankClient::IsClientExist(AccountNumber))
 		{
 			cout << "\nClient with [" << AccountNumber << "] Account Number Does not Exist, Enter another Account Number: ";
-			AccountNumber = clsInputValidate::ReadString();
+			AccountNumber = clsInputValidate<string>::ReadString();
 		}
 
 		clsBankClient FindClient = clsBankClient::Find(AccountNumber);

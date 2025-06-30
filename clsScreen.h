@@ -16,7 +16,7 @@ protected:
 
         if (!CurrentUser.CheckAccressPermission(Permission))
         {
-            cout << "\t\t\t\t\t______________________________________";
+            cout << "\n\t\t\t\t\t______________________________________";
             cout << "\n\n\t\t\t\t\t  Access Denied! Contact your Admin.";
             cout << "\n\t\t\t\t\t______________________________________\n\n";
             return false;
@@ -38,7 +38,8 @@ protected:
 		}
 		cout << "\n\t\t\t\t\t______________________________________\n";
         cout << "\n\t\t\t\t\tUser: " << CurrentUser.UserName << endl;
-        cout << "\t\t\t\t\tDate: " << clsDate::DateToString(clsDate()) << "\n\n";
+        cout << "\t\t\t\t\tDate: " << clsDate::DateToString(clsDate()) << "";
+        cout << "\n\t\t\t\t\t______________________________________\n\n";
 	}
 };
 

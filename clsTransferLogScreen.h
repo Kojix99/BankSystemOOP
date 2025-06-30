@@ -28,8 +28,8 @@ public:
 	{
 		vector<clsBankClient::stTransferLog> vTranferLog = clsBankClient::LoadTransferLogData();
 
-		string Title = "\t  Transfer Log List Screen";
-		string SubTitle = "\t\t(" + to_string(vTranferLog.size()) + ") Record(s).";
+		string Title = "\tTransfer Log List Screen";
+		string SubTitle = "\t   (" + to_string(vTranferLog.size()) + ") Record(s).";
 		clsScreen::_DrawScreenHeader(Title, SubTitle);
 
         cout << left;

@@ -1,9 +1,15 @@
+//Improve Project by Using Template instead of overloading
+
 #pragma once
 #include <iostream>
+#include <iomanip>
+
 #include "clsDate.h"
 
 using namespace std;
 
+
+template <typename T>
 
 class clsInputValidate
 {
@@ -27,85 +33,6 @@ public:
 			To = SwapDate;
 		}
 		return clsDate::IsDate1AfterDate2(DateToCompare, From) && clsDate::IsDate1BeforeDate2(DateToCompare, To);
-	}
-
-	static int ReadIntNumber(string ErrorMessage = "Invalid Number, Try again: ")
-	{
-		int Number;
-		while (!(cin >> Number))
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
-
-	static double ReadDblNumber(string ErrorMessage = "Invalid Number, Try again: ")
-	{
-		double Number;
-		cout << "Enter a Number: ";
-		cin >> Number;
-		while (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-			cin >> Number;
-		}
-		return Number;
-	}
-
-	static double ReadFloatNumber(string ErrorMessage = "Invalid Number, Enter again\n")
-	{
-		float Number;
-		while (!(cin >> Number)) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << ErrorMessage;
-		}
-		return Number;
-	}
-
-	static double ReadFloatNumberBetween(double From, double To, string ErrorMessage = "Number is not within range, Enter again:\n")
-	{
-		float Number = ReadFloatNumber();
-
-		while (!IsNumberBetween(Number, From, To)) {
-			cout << ErrorMessage;
-			Number = ReadDblNumber();
-		}
-		return Number;
-	}
-
-	static int ReadIntNumberBetween(int From, int To, string InvalidMessage = "Invalid Number, Try again: ")
-	{
-		int Number;
-		cout << "Enter a Number: ";
-		cin >> Number;
-		while (cin.fail() || !IsNumberBetween(Number, From, To))
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << InvalidMessage;
-			cin >> Number;
-		}
-		return Number;
-	}
-
-	static double ReadDblNumberBetween(int From, int To, string InvalidMessage)
-	{
-		double Number;
-		cout << "Enter a Double: ";
-		cin >> Number;
-		while (cin.fail() || !IsNumberBetween(Number, (double)From, (double)To))
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << InvalidMessage;
-			cin >> Number;
-		}
-		return Number;
 	}
 
 	static string ReadString()
@@ -133,5 +60,48 @@ public:
 		}
 
 		return Number;
+	}
+
+	static T ReadData(string Message)
+	{
+		T Data;
+		if (!Message.empty())
+		{
+			cout << "\n" << Message;
+		}
+
+		while (!(cin >> Data))
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			if (!Message.empty())
+			{
+				cout << "\nInvalid Input .. " << Message;
+			}
+		}
+		return Data;
+	}
+
+	static T ReadDataBetween(string Message, T from, T To, int SpaceNumber)
+	{
+		T Data;
+		if (!Message.empty())
+		{
+			cout << left;
+			cout << "\n" << setw(SpaceNumber) << "" << Message;
+		}
+
+		while (!(cin >> Data) || Data < from || Data > To)
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			if (!Message.empty())
+			{
+				cout << left;
+				cout << "\n" << setw(SpaceNumber) << "";
+				cout << "Invalid Input .. " << Message;    
+			}
+		}
+		return Data;
 	}
 };

@@ -48,15 +48,14 @@ public:
 		clsScreen::_DrawScreenHeader("\t Find Currency Screen");
 
 		enFindByChoice Choice;
-		cout << "Find By: [1] Code or [2] Country: ";
-		Choice = enFindByChoice(clsInputValidate::ReadShortNumberBetween(1, 2, "Invalid Input .. Find By: [1] Code or [2] Country: "));
+		Choice = enFindByChoice(clsInputValidate<short>::ReadDataBetween("Find By: [1] Code or [2] Country: ",1, 2, 0));
 
 
 		if (Choice == enFindByChoice::CurrencyCode)
 		{
 			string CurrencyCode;
 			cout << "\nEnter Currency Code: ";
-			CurrencyCode = clsInputValidate::ReadString();
+			CurrencyCode = clsInputValidate<string>::ReadString();
 			clsCurrency FindCurrency = clsCurrency::FindByCode(CurrencyCode);
 			_ShowResults(FindCurrency);
 		}
@@ -64,7 +63,7 @@ public:
 		{
 			string CurrencyCountry;
 			cout << "\nEnter Currency Country: ";
-			CurrencyCountry = clsInputValidate::ReadString();
+			CurrencyCountry = clsInputValidate<string>::ReadString();
 			clsCurrency FindCurrency = clsCurrency::FindByCountry(CurrencyCountry);
 			_ShowResults(FindCurrency);
 		}

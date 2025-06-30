@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 
 #include "clsScreen.h"
@@ -33,8 +34,8 @@ private:
     static short _ReadTransactionOption()
     {
         short TRANSACTION_OPTION_NUMBER = 6;
-        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to " << TRANSACTION_OPTION_NUMBER << "] ? ";
-        short TransactionOption = clsInputValidate::ReadShortNumberBetween(1, TRANSACTION_OPTION_NUMBER, "Enter Number between 1 to " + to_string(TRANSACTION_OPTION_NUMBER));
+        string Message = "Choose what do you want to do [1 to " + to_string(TRANSACTION_OPTION_NUMBER) + "]: ";
+        short TransactionOption = clsInputValidate<short>::ReadDataBetween(Message, 1, TRANSACTION_OPTION_NUMBER, 37);
         return TransactionOption;
     }
 
@@ -66,7 +67,7 @@ private:
 
     static void _GoBackToTransactionMenue()
     {
-        cout << setw(37) << left << "" << "\n\tPress any key to go back to Transaction Menue...";
+        cout << "\n\n\n\tPress any key to go back to Transaction Menue...";
         system("pause>0");
         ShowTransactionMenue();
     }
@@ -126,11 +127,11 @@ public:
         }
 		system("cls");
 
-		_DrawScreenHeader("\t\tTransaction Screen");
+		_DrawScreenHeader("\t  Transaction Screen");
         
         cout << left;
         cout << setw(37) << "" << "===========================================\n";
-        cout << setw(37) << "" << "\t\t\tTransaction Menue\n";
+        cout << setw(37) << "" << "\t\t Transaction Menue\n";
         cout << setw(37) << "" << "===========================================\n";
         cout << setw(37) << "" << "\t[1] Deposite.\n";
         cout << setw(37) << "" << "\t[2] Withdraw.\n";

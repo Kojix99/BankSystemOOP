@@ -2,7 +2,6 @@
 #include <iostream>
 #include <iomanip>
 #include "clsScreen.h"
-#include "clsInputValidate.h"
 
 
 #include "clsClientListScreen.h"
@@ -15,11 +14,11 @@
 #include "clsLoginRegister.h"
 #include "clsCurrencyExchangeScreen.h"
 
-#include "Global.h"
+//#include "Global.h"
 #include "clsUser.h"
 
 
-using namespace std;
+using namespace std;  
 
 class clsMainScreen :protected clsScreen
 {
@@ -41,22 +40,15 @@ private:
     {
         short MAIN_MENUE_OPTIONS_NUMBER = 10;
 
-        short CurrencyOption;
-        cout << left;
-        cout << setw(37) << "" << "Choose what do you want to do [1 to " << MAIN_MENUE_OPTIONS_NUMBER << "]: ";
-        while (!(cin >> CurrencyOption) || CurrencyOption > MAIN_MENUE_OPTIONS_NUMBER || CurrencyOption < 1)
-        {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << setw(37) << "" << "Invalid Input .. Choose what do you want to do [1 to " << MAIN_MENUE_OPTIONS_NUMBER << "]: ";
-        }
-
+        string Message = "Choose what do you want to do [1 to " + to_string(MAIN_MENUE_OPTIONS_NUMBER) + "]: ";
+        short CurrencyOption = clsInputValidate<short>::ReadDataBetween(Message, 1, MAIN_MENUE_OPTIONS_NUMBER, 37);
+       
         return enMainMenueOptions(CurrencyOption);
     }
 
     static  void _GoBackToMainMenue()
     {
-        cout << setw(37) << left << "" << "\n\tPress any key to go back to Main Menue...";
+        cout << "\n\n\tPress any key to go back to Main Menue...";
 
         system("pause>0");
         ShowMainMenue();
@@ -187,10 +179,10 @@ public:
     {
 
         system("cls");
-        _DrawScreenHeader("\t\tMain Screen");
+        _DrawScreenHeader("\t     Main Screen");
 
         cout << setw(37) << left << "" << "===========================================\n";
-        cout << setw(37) << "" << "\t\t\tMain Menue\n";
+        cout << setw(37) << "" << "\t\t    Main Menue\n";
         cout << setw(37) << "" << "===========================================\n";
         cout << setw(37) << "" << "\t[1] Show Client List.\n";
         cout << setw(37) << "" << "\t[2] Add New Client.\n";

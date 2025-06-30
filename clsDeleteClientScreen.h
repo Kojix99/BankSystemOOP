@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
+
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include "clsBankClient.h"
 
 class clsDeleteClientScreen :protected clsScreen
 {
-
 private:
     static void _PrintClient(clsBankClient Client)
     {
@@ -36,11 +36,11 @@ public:
         string AccountNumber = "";
 
         cout << "\nPlease Enter Account Number: ";
-        AccountNumber = clsInputValidate::ReadString();
+        AccountNumber = clsInputValidate<string>::ReadString();
         while (!clsBankClient::IsClientExist(AccountNumber))
         {
             cout << "\nAccount number is not found, choose another one: ";
-            AccountNumber = clsInputValidate::ReadString();
+            AccountNumber = clsInputValidate<string>::ReadString();
         }
 
         clsBankClient Client1 = clsBankClient::Find(AccountNumber);
@@ -62,8 +62,12 @@ public:
             }
             else
             {
-                cout << "\nError Client Was not Deleted\n";
+                cout << "\nError Client Was not Deleted.\n";
             }
+        }
+        else
+        {
+            cout << "\nDelete Client Cancelled.\n";
         }
     }
 

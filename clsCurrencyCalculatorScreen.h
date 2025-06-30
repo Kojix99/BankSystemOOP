@@ -15,12 +15,12 @@ private:
 	{
 		string Code;
 		cout << Message;
-		Code = clsInputValidate::ReadString();
+		Code = clsInputValidate<string>::ReadString();
 		clsCurrency Currency = clsCurrency::FindByCode(Code);
 		while (Currency.IsEmpty())
 		{
 			cout << "Invalid Input .. " << Message;
-			Code = clsInputValidate::ReadString();
+			Code = clsInputValidate<string>::ReadString();
 			clsCurrency Currency = clsCurrency::FindByCode(Code);
 		}
 
@@ -29,14 +29,7 @@ private:
 
 	static float _ReadExchangeAmount()
 	{
-		float ExchangeAmount;
-		cout << "\nEnter Amount To Exchange       : ";
-		while (!(cin >> ExchangeAmount))
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "\nInvalid Input .. Enter Amount To Exhange: ";
-		}
+		float ExchangeAmount = clsInputValidate<float>::ReadData("Enter Amount To Exchange       : ");
 		return ExchangeAmount;
 	}
 
@@ -72,7 +65,7 @@ private:
 
 		cout << Amount << " " << SourceCurrency.CurrencyCode() <<
 			" = " << SourceCurrency.ConvertToOtherCurrency(Amount, DestinationCurrency) 
-			<< "USD";
+			<< DestinationCurrency.CurrencyCode();
 	}
 public:
 
@@ -89,6 +82,7 @@ public:
 															
 			float ExchangeAmount = _ReadExchangeAmount();
 
+			_PrintCalculationResults(ExchangeAmount, SourceCurrency, DestinationCurrency);
 			cout << "\n\nDo you want to perform another calculation (Y/N): ";
 			cin >> Answer;
 		} while (tolower(Answer) == 'y');

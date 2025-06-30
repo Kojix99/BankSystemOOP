@@ -1,9 +1,12 @@
 #pragma once
 
 #include <iostream>
+#include <iomanip>
+
 #include "clsScreen.h"
 #include "clsBankClient.h"
-#include <iomanip>
+
+using namespace std;
 
 class clsClientListScreen :protected clsScreen
 {

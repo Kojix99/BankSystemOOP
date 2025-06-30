@@ -33,12 +33,12 @@ public:
 
 		string UserName;
 		cout << "\nEnter User Name you want to Delete: ";
-		UserName = clsInputValidate::ReadString();
+		UserName = clsInputValidate<string>::ReadString();
 
 		while (!clsUser::IsUserExist(UserName))
 		{
 			cout << "\nUser with [" << UserName << "] User Name Does not Exist, Enter Another UserName: ";
-			UserName = clsInputValidate::ReadString();
+			UserName = clsInputValidate<string>::ReadString();
 		}
 
 		clsUser UserToDelete = clsUser::Find(UserName);
@@ -53,17 +53,17 @@ public:
 		{
 			if (UserToDelete.Delete())
 			{
-				cout << "Client Deleted Successfully.\n";
+				cout << "\nClient Deleted Successfully.\n";
 				_Print(UserToDelete);
 			}
 			else
 			{
-				cout << "Client does not Deleted.\n";
+				cout << "\nClient does not Deleted.\n";
 			}
 		}
 		else
 		{
-			cout << "Client Delete Option cancelled.\n";
+			cout << "\nClient Delete Option cancelled.\n";
 		}
 	}
 };

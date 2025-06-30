@@ -311,39 +311,39 @@ public:
 
         switch (_Mode)
         {
-        case enMode::EmptyMode:
-        {
-            if (IsEmpty())
+            case enMode::EmptyMode:
             {
-                return enSaveResults::svFaildEmptyObject;
+                if (IsEmpty())
+                {
+                    return enSaveResults::svFaildEmptyObject;
+                }
             }
-        }
 
-        case enMode::UpdateMode:
-        {
-            _Update();
-            return enSaveResults::svSucceeded;
-
-            break;
-        }
-
-        case enMode::AddNewMode:
-        {
-            //This will add new record to file or database
-            if (clsUser::IsUserExist(_UserName))
+            case enMode::UpdateMode:
             {
-                return enSaveResults::svFaildUserExists;
-            }
-            else
-            {
-                _AddNew();
-                //We need to set the mode to update after add new
-                _Mode = enMode::UpdateMode;
+                _Update();
                 return enSaveResults::svSucceeded;
+
+                break;
             }
 
-            break;
-        }
+            case enMode::AddNewMode:
+            {
+                //This will add new record to file or database
+                if (clsUser::IsUserExist(_UserName))
+                {
+                    return enSaveResults::svFaildUserExists;
+                }
+                else
+                {
+                    _AddNew();
+                    //We need to set the mode to update after add new
+                    _Mode = enMode::UpdateMode;
+                    return enSaveResults::svSucceeded;
+                }
+
+                break;
+            }
         }
 
     }

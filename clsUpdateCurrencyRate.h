@@ -27,8 +27,7 @@ class clsUpdateCurrencyRate : protected clsScreen
 		float CurrencyRate;
 		cout << "\n\nUpdate Currency Rate:\n";
 		cout << "____________________________\n";
-		cout << "\nEnter New Rate: ";
-		CurrencyRate = clsInputValidate::ReadFloatNumber();
+		CurrencyRate = clsInputValidate<float>::ReadData("Enter New Rate: ");
 
 		return CurrencyRate;
 	}
@@ -40,7 +39,7 @@ public:
 		
 		string CurrencyCode;
 		cout << "Enter Currency Code: ";
-		CurrencyCode = clsInputValidate::ReadString();
+		CurrencyCode = clsInputValidate<string>::ReadString();
 		clsCurrency ToUpdateCurrency = clsCurrency::FindByCode(CurrencyCode);
 
 		if (!ToUpdateCurrency.IsEmpty())

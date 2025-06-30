@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+
+
 #include "clsScreen.h"
 #include "clsBankClient.h"
 #include "clsInputValidate.h"
@@ -14,28 +16,28 @@ private:
 	static void _ReadClientInfo(clsBankClient& NewClient)
 	{
 		cout << "\nEnter FirstName      : ";
-		NewClient.FirstName = clsInputValidate::ReadString();
+		NewClient.FirstName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter LastName       : ";
-		NewClient.LastName = clsInputValidate::ReadString();
+		NewClient.LastName = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Email          : ";
-		NewClient.Email = clsInputValidate::ReadString();
+		NewClient.Email = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter Phone          : ";
-		NewClient.Phone = clsInputValidate::ReadString();
+		NewClient.Phone = clsInputValidate<string>::ReadString();
 
 		cout << "\nEnter PinCode        : ";
-		NewClient.PinCode = clsInputValidate::ReadString();
+		NewClient.PinCode = clsInputValidate<string>::ReadString();
 
-		cout << "\nEnter AccountBalance : ";
-		NewClient.AccountBalance = clsInputValidate::ReadFloatNumber();
+		NewClient.AccountBalance = clsInputValidate<float>::ReadData("Enter AccountBalance : ");
 	}
 
 	static void _Print(clsBankClient Client)
 	{
 		cout << "\nClient Card:";
 		cout << "\n___________________";
+
 		cout << "\nFirstName   : " << Client.FirstName;
 		cout << "\nLastName    : " << Client.LastName;
 		cout << "\nFull Name   : " << Client.FullName();
@@ -57,13 +59,13 @@ public:
 
 		string AccountNumber = "";
 
-		cout << "\nPlease Enter Account Number: ";
-		AccountNumber = clsInputValidate::ReadString();
+		cout << "\nEnter Account Number : ";
+		AccountNumber = clsInputValidate<string>::ReadString();
 
 		while (clsBankClient::IsClientExist(AccountNumber))
 		{
 			cout << "\nAccount Number Is Alrady Used: ";
-			AccountNumber = clsInputValidate::ReadString();
+			AccountNumber = clsInputValidate<string>::ReadString();
 		}
 
 		clsBankClient NewClient = clsBankClient::GetAddNewClientObject(AccountNumber);

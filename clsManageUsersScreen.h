@@ -2,6 +2,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <string>
 
 #include "clsScreen.h"
 #include "clsInputValidate.h"
@@ -24,8 +25,9 @@ private:
 
     static short ReadManageUsersMenueOption()
     {
-        cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
-        short Choice = clsInputValidate::ReadShortNumberBetween(1, 6, "Enter Number between 1 to 6? ");
+        short  MANAGE_USERS_OPTIONS_NUMBER = 6;
+        string Message = "Choose what do you want to do [1 to "+ to_string(MANAGE_USERS_OPTIONS_NUMBER) + "]: ";
+        short Choice = clsInputValidate<short>::ReadDataBetween(Message, 1, MANAGE_USERS_OPTIONS_NUMBER, 37);
         return Choice;
     }
 

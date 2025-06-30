@@ -44,13 +44,13 @@ public:
         if (vClients.size() == 0)
             cout << "\t\t\t\tNo Clients Available In the System!";
         else
-
+        { 
             for (clsBankClient Client : vClients)
             {
                 PrintClientRecordBalanceLine(Client);
                 cout << endl;
             }
-
+        }
         cout << setw(25) << left << "" << "\n\t\t_______________________________________________________";
         cout << "__________________________\n" << endl;
 
