@@ -11,10 +11,7 @@
 #include <iostream>
 
 #include "clsLoginScreen.h"
-
 #include "clsUtil.h"
-
-#include "clsTesting.h"
 
 using namespace std;
 
